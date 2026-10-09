@@ -1,26 +1,26 @@
 export class EquipamentoModel {
 #tagPatrimonio
-constructor(tagPatrimonio, tipoEquipamento, memoriaRam) {
+constructor(tagPatrimonio, tipoEquipamento, capacidadeRam) {
  this.#tagPatrimonio = tagPatrimonio;
 this.equipamento = tipoEquipamento;
-this.memoria = memoriaRam;
+this.memoria = capacidadeRam;
 
 }
 
 get tagPatrimonio() {return this.#tagPatrimonio};
 
-    verificarTag(vazio) {
-        if( !vazio || vazio.trim() === ""){
+    registrarAtivo(erros) {
+        if( !erros || erros.trim() === ""){
             throw new Error("ERR_ESPAÇO_VAZIO");
     }
-     this.#tagPatrimonio = vazio;
-}
+     this.#tagPatrimonio = erros;
 
-    verificarRam(quantidade){
-        if( quantidade <8){
+           if(erros <8){
             throw new Error("[BLOQUEIO]ERR_QUANTIDADE_INVÁLIDA");
         }
     }
-}
 
+    
+}
+// listarInventario?
 // O TIPO DE EQUIPAMENTO PEGA NO INDEX
