@@ -1,5 +1,6 @@
-const EquipamentoModel = require("../models/EquipamentoModel");
-const TecnicoModel = require("../models/TecnicoMode");
+const EquipamentoModel = require('../models/EquipamentoModel');
+const TecnicoModel = require('../models/TecnicoModel');
+
 
 class AuditoriaController {
   static gerarRelatorioGeral() {
@@ -8,12 +9,12 @@ class AuditoriaController {
 
     return {
       status: 200,
-      mensagem: "Relatório de Auditoria Geral gerado com sucesso.",
-      geradoEm: new Date().toLocaleString("pt-BR"),
-      resumo: {
-        totalEquipamentos: equipamentos.length,
-        totalTecnicos: tecnicos.length,
-        totalGeralOperacao: equipamentos.length + tecnicos.length,
+      titulo: 'Relatório de Auditoria Geral - TechPrime Infraestrutura',
+      geradoEm: new Date().toLocaleString('pt-BR'),
+      totais: {
+        equipamentos: equipamentos.length,
+        tecnicos: tecnicos.length,
+        operacao: equipamentos.length + tecnicos.length,
       },
       equipamentos,
       tecnicos,

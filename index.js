@@ -1,3 +1,5 @@
+
+const readline = require("readline");
 const EquipamentoController = require("./controllers/EquipamentoController");
 const TecnicoController = require("./controllers/TecnicoController");
 const AuditoriaController = require("./controllers/AuditoriaController");
@@ -33,7 +35,7 @@ async function main() {
   while (true) {
     exibirMenu();
     const opcao = await perguntar("Escolha uma opção: ");
-    if (opcao === null) break; // entrada encerrada
+    if (opcao === null) break;
 
     switch (opcao.trim()) {
       case "1": {
@@ -71,4 +73,3 @@ async function main() {
 }
 
 main();
-//aninha diva fez

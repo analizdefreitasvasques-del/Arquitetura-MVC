@@ -1,9 +1,9 @@
 
 class TecnicoModel {
-  
-  static #equipe = [];
+ 
+  static #bancoTecnicos = [];
 
-  static #TURNOS_VALIDOS = ["Manhã", "Tarde", "Noite"];
+  static TURNOS_VALIDOS = ['Manhã', 'Tarde', 'Noite'];
 
   constructor(nomeCompleto, credencialAcesso, turnoTrabalho) {
     this.nomeCompleto = nomeCompleto;
@@ -11,35 +11,40 @@ class TecnicoModel {
     this.turnoTrabalho = turnoTrabalho;
   }
 
-  
-  static contratarTecnico(nomeCompleto, credencialAcesso, turnoTrabalho) {
-    if (nomeCompleto === undefined || nomeCompleto === null || String(nomeCompleto).trim() === "") {
-      throw new Error("O nome completo não pode ficar vazio.");
+ 
+  contratarTecnico() {
+    if (!this.nomeCompleto || String(this.nomeCompleto).trim() === '') {
+      throw new Error('O Nome Completo não pode ficar vazio.');
     }
 
-    
-    if (credencialAcesso === undefined || credencialAcesso === null || String(credencialAcesso).trim() === "") {
-      throw new Error("A Credencial de Acesso não pode ficar vazia.");
+   
+    if (!this.credencialAcesso || String(this.credencialAcesso).trim() === '') {
+      throw new Error('A Credencial de Acesso não pode ficar vazia.');
     }
 
-    
-    const turno = String(turnoTrabalho).trim();
-    if (!TecnicoModel.#TURNOS_VALIDOS.includes(turno)) {
+   
+    if (!TecnicoModel.TURNOS_VALIDOS.includes(this.turnoTrabalho)) {
       throw new Error(
-        `Turno inválido ("${turno}"). Turnos aceitos: ${TecnicoModel.#TURNOS_VALIDOS.join(", ")}.`
+        `Turno inválido: "${this.turnoTrabalho}". Aceitos: ${TecnicoModel.TURNOS_VALIDOS.join(', ')}.`
       );
     }
 
-    const novo = new TecnicoModel(String(nomeCompleto).trim(), String(credencialAcesso).trim(), turno);
-    TecnicoModel.#equipe.push(novo);
-    return novo;
+    this.nomeCompleto = String(this.nomeCompleto).trim();
+    this.credencialAcesso = String(this.credencialAcesso).trim();
+
+    TecnicoModel.#bancoTecnicos.push({
+      nomeCompleto: this.nomeCompleto,
+      credencialAcesso: this.credencialAcesso,
+      turnoTrabalho: this.turnoTrabalho,
+    });
+
+    return this;
   }
 
+  
   static listarEquipe() {
-    return TecnicoModel.#equipe.map((t) => ({ ...t }));
+    return TecnicoModel.#bancoTecnicos.map((t) => ({ ...t }));
   }
 }
 
 module.exports = TecnicoModel;
-//
-

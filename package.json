@@ -1,13 +1,17 @@
 {
-  "name": "arquitetura-mvc",
+  "name": "Arquitetura-MVC",
   "version": "1.0.0",
-  "description": "",
+  "description": "Sistema de gestão de ativos de TI e técnicos de suporte (MVC via terminal) - TechPrime Infraestrutura",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js"
   },
-  "keywords": [],
+  "keywords": [
+    "mvc",
+    "nodejs",
+    "terminal",
+    "techprime"
+  ],
   "author": "",
-  "license": "ISC",
-  "type": "commonjs"
+  "license": "ISC"
 }

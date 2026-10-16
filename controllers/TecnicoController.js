@@ -1,19 +1,24 @@
-
-const TecnicoModel = require("../models/TecnicoModel");
+const TecnicoModel = require('../models/TecnicoModel');
 
 class TecnicoController {
   static processarAdmissao(nomeCompleto, credencialAcesso, turnoTrabalho) {
     try {
-      const tecnico = TecnicoModel.contratarTecnico(nomeCompleto, credencialAcesso, turnoTrabalho);
+      const tecnico = new TecnicoModel(nomeCompleto, credencialAcesso, turnoTrabalho);
+      tecnico.contratarTecnico();
+
       return {
         status: 201,
-        mensagem: "Técnico contratado com sucesso.",
-        dados: tecnico,
+        mensagem: 'Técnico admitido com sucesso!',
+        dados: {
+          nomeCompleto: tecnico.nomeCompleto,
+          credencialAcesso: tecnico.credencialAcesso,
+          turnoTrabalho: tecnico.turnoTrabalho,
+        },
       };
     } catch (erro) {
       return {
         status: 400,
-        mensagem: "Falha ao contratar técnico.",
+        mensagem: 'Falha ao admitir técnico.',
         erro: erro.message,
       };
     }
@@ -23,7 +28,6 @@ class TecnicoController {
     const equipe = TecnicoModel.listarEquipe();
     return {
       status: 200,
-      mensagem: "Equipe de técnicos consultada.",
       total: equipe.length,
       dados: equipe,
     };
